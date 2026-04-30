@@ -163,12 +163,6 @@ body {
   }
 }
 
-.scroll-cue-arrow {
-  display: inline-block;
-  transform: translateY(-1px);
-  animation: scroll-cue-bob 1.4s ease-in-out infinite;
-}
-
 .copy-btn {
   position: relative;
   transition: border-color 120ms ease, color 120ms ease, background-color 120ms
@@ -235,15 +229,6 @@ body {
     transform: translateY(2px);
     opacity: 1;
   }
-}
-
-.docs-cta-arrow {
-  display: inline-block;
-  transition: transform 180ms ease;
-}
-
-.docs-cta:hover .docs-cta-arrow {
-  animation: docs-arrow-bounce 520ms ease-in-out infinite;
 }
 
 @keyframes docs-arrow-bounce {
