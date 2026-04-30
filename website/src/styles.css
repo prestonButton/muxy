@@ -310,6 +310,10 @@ body {
   @apply overflow-x-auto rounded-lg border border-border bg-white/5 p-4 text-sm;
 }
 
+.compat-pills-wrap {
+  position: relative;
+}
+
 .compat-pill {
   position: relative;
   cursor: default;
@@ -367,6 +371,71 @@ body {
 
 .compat-pill:hover > span:last-child {
   color: rgba(255, 255, 255, 0.95);
+}
+
+@media (max-width: 767px), (hover: none) and (pointer: coarse) {
+  .compat-pills-wrap {
+    --compat-gradient: linear-gradient(
+      115deg,
+      #22d3ee 0%,
+      #6366f1 38%,
+      #ec4899 68%,
+      #a78bfa 100%
+    );
+  }
+
+  .compat-pill {
+    border-color: transparent;
+    background: linear-gradient(#0b0b0e, #0b0b0e) padding-box,
+      var(--compat-gradient) fixed border-box;
+    transform: none;
+  }
+
+  .compat-pill::before {
+    display: none;
+  }
+
+  .compat-pill:hover {
+    border-color: transparent;
+    background: linear-gradient(#0b0b0e, #0b0b0e) padding-box,
+      var(--compat-gradient) fixed border-box;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .compat-pill-name,
+  .compat-pill:hover > span:last-child {
+    color: transparent;
+    background: var(--compat-gradient) fixed;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+  .compat-pill:hover svg {
+    color: rgb(255 255 255 / 0.4);
+    filter: none;
+    animation: none;
+    transform: none;
+  }
+
+  .compat-pill-glyph:not([data-icon^="lucide:"]),
+  .compat-pill-glyph:not([data-icon^="lucide:"]) use,
+  .compat-pill-glyph:not([data-icon^="lucide:"]) path {
+    fill: url("#compat-pill-mobile-gradient");
+  }
+
+  .compat-pill-glyph[data-icon^="lucide:"],
+  .compat-pill-glyph[data-icon^="lucide:"] use,
+  .compat-pill-glyph[data-icon^="lucide:"] g,
+  .compat-pill-glyph[data-icon^="lucide:"] path,
+  .compat-pill-glyph[data-icon^="lucide:"] rect {
+    fill: none;
+    stroke: url("#compat-pill-mobile-gradient");
+  }
+
+  .compat-pill:hover .compat-pill-ring {
+    animation: none;
+  }
 }
 
 @keyframes icon-pop {

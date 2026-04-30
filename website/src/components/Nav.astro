@@ -6,13 +6,30 @@ interface Props {
 const { currentPath } = Astro.props;
 ---
 
-<nav id="site-nav" class="fixed left-0 right-0 top-0 z-50 h-[54px] border-b border-transparent bg-transparent px-10 transition-all duration-300">
+<nav id="site-nav" class="fixed left-0 right-0 top-0 z-50 h-[54px] border-b border-transparent bg-transparent px-4 transition-all duration-300 md:px-10">
   <div class="mx-auto flex h-full max-w-7xl items-center justify-between">
     <a href="/" class="flex items-center gap-2.5">
       <img src="/assets/logo.svg" alt="Muxy" class="h-6 w-6" />
       <span class="text-[15px] font-bold tracking-[-0.02em] text-white">Muxy</span>
     </a>
-    <div class="flex items-center gap-2">
+
+    <button
+      id="site-nav-toggle"
+      type="button"
+      class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/15 text-white/80 transition-colors hover:text-white md:hidden"
+      aria-expanded="false"
+      aria-controls="site-nav-mobile-menu"
+      aria-label="Toggle navigation menu"
+    >
+      <svg id="site-nav-icon-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      </svg>
+      <svg id="site-nav-icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="hidden h-5 w-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <div class="hidden items-center gap-2 md:flex">
       <a
         href="/docs"
         class:list={[
@@ -28,10 +45,42 @@ const { currentPath } = Astro.props;
       <a href="/download" class="primary-btn rounded-md bg-muxy-gradient px-6 py-2 text-[13px] font-semibold text-white">Download</a>
     </div>
   </div>
+
+  <div id="site-nav-mobile-menu" class="pointer-events-none absolute left-4 right-4 top-[62px] hidden rounded-lg border border-white/10 bg-bg/95 p-3 opacity-0 backdrop-blur-[20px] transition-all duration-200 md:hidden">
+    <div class="flex flex-col gap-2">
+      <a
+        href="/docs"
+        class:list={[
+          'group flex items-center justify-between rounded-md border px-3 py-2 text-[13px] transition-all duration-150',
+          currentPath === '/docs'
+            ? 'border-accent/40 bg-accent/15 text-white'
+            : 'border-white/15 text-white/70 hover:text-white'
+        ]}
+      >
+        <span>Docs</span>
+        <span class="inline-block">→</span>
+      </a>
+      <a href="https://github.com/muxy-app/muxy" data-github-app-link="true" class="group flex items-center justify-between rounded-md border border-white/15 px-3 py-2 text-[13px] text-white/70 transition-all duration-150 hover:text-white">
+        <span>GitHub</span>
+        <span class="inline-block">↗</span>
+      </a>
+      <div class="rounded-md border border-white/10 bg-white/5 px-3 py-2">
+        <button type="button" disabled aria-disabled="true" class="w-full cursor-not-allowed rounded-md border border-white/10 bg-white/5 px-6 py-2 text-center text-[13px] font-semibold text-white/45">Download for iOS</button>
+        <p class="mt-2 text-center text-[11px] leading-tight text-white/55">iOS coming soon. Beta available on TestFlight.</p>
+        <p class="mt-1 text-center text-[11px] leading-tight text-white/45">Mac app is available now on the <a href="/download" class="text-white/70 underline decoration-white/30 underline-offset-2 hover:text-white">Download page</a>.</p>
+      </div>
+    </div>
+  </div>
 </nav>
 
 <script>
   const nav = document.getElementById('site-nav');
+  const toggle = document.getElementById('site-nav-toggle');
+  const mobileMenu = document.getElementById('site-nav-mobile-menu');
+  const iconOpen = document.getElementById('site-nav-icon-open');
+  const iconClose = document.getElementById('site-nav-icon-close');
+  const githubAppLink = document.querySelector('[data-github-app-link="true"]');
+
   const setNavState = () => {
     if (!nav) {
       return;
@@ -44,6 +93,74 @@ const { currentPath } = Astro.props;
     nav.classList.add('bg-transparent', 'border-transparent');
     nav.classList.remove('bg-bg/85', 'backdrop-blur-[20px]', 'border-white/[0.07]');
   };
+
+  const closeMenu = () => {
+    if (!toggle || !mobileMenu || !iconOpen || !iconClose) {
+      return;
+    }
+    toggle.setAttribute('aria-expanded', 'false');
+    mobileMenu.classList.add('hidden', 'pointer-events-none', 'opacity-0');
+    mobileMenu.classList.remove('opacity-100');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+  };
+
+  const openMenu = () => {
+    if (!toggle || !mobileMenu || !iconOpen || !iconClose) {
+      return;
+    }
+    toggle.setAttribute('aria-expanded', 'true');
+    mobileMenu.classList.remove('hidden', 'pointer-events-none', 'opacity-0');
+    mobileMenu.classList.add('opacity-100');
+    iconOpen.classList.add('hidden');
+    iconClose.classList.remove('hidden');
+  };
+
+  const toggleMenu = () => {
+    if (!toggle) {
+      return;
+    }
+    if (toggle.getAttribute('aria-expanded') === 'true') {
+      closeMenu();
+      return;
+    }
+    openMenu();
+  };
+
   setNavState();
+  closeMenu();
+
   window.addEventListener('scroll', setNavState);
+
+  if (toggle) {
+    toggle.addEventListener('click', toggleMenu);
+  }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') {
+      return;
+    }
+    closeMenu();
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+      closeMenu();
+    }
+  });
+
+  if (githubAppLink) {
+    githubAppLink.addEventListener('click', (event) => {
+      if (!/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        return;
+      }
+      event.preventDefault();
+      const fallbackUrl = 'https://github.com/muxy-app/muxy';
+      const appUrl = 'github://openRepo/https://github.com/muxy-app/muxy';
+      window.location.href = appUrl;
+      window.setTimeout(() => {
+        window.location.href = fallbackUrl;
+      }, 700);
+    });
+  }
 </script>

@@ -10,11 +10,15 @@
     <h1 class="mb-8 max-w-5xl text-[clamp(84px,13vw,180px)] font-black leading-[0.92] tracking-[-0.04em] text-white">Muxy</h1>
     <p class="mb-12 max-w-[560px] whitespace-pre-line text-[clamp(18px,2.4vw,26px)] font-light leading-[1.4] tracking-[-0.01em] text-white/60">A native macOS terminal.
 Still a terminal — now a workspace.</p>
-    <div class="mb-12 flex flex-wrap justify-center gap-3">
-      <a href="/download" class="primary-btn rounded-lg bg-muxy-gradient px-8 py-3.5 text-sm font-semibold tracking-[-0.01em] text-white shadow-[0_0_40px_rgba(99,102,241,0.25)]">Download for Mac</a>
+    <div class="mb-8 flex flex-wrap justify-center gap-3">
+      <a href="/download" class="primary-btn hidden rounded-lg bg-muxy-gradient px-8 py-3.5 text-sm font-semibold tracking-[-0.01em] text-white shadow-[0_0_40px_rgba(99,102,241,0.25)] md:inline-flex">Download for Mac</a>
       <a href="/docs" class="secondary-glow-btn docs-cta group rounded-lg border border-white/15 px-7 py-3.5 text-sm font-medium tracking-[-0.01em] text-white/70">Read the docs <span class="inline-block transition-transform duration-200 group-hover:animate-[docs-arrow-bounce_1s_ease-in-out_infinite]">→</span></a>
     </div>
-    <div class="inline-flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 font-mono text-xs text-white/55">
+    <div class="mb-12 flex flex-wrap items-center justify-center gap-2 text-xs text-white/60">
+      <a href="/download" class="rounded-full border border-white/15 bg-white/[0.03] px-3 py-1.5 transition-colors hover:text-white md:hidden">macOS app available now</a>
+      <a href="/download" class="rounded-full border border-white/15 bg-white/[0.03] px-3 py-1.5 transition-colors hover:text-white">iOS beta on TestFlight</a>
+    </div>
+    <div class="hidden items-center gap-3 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 font-mono text-xs text-white/55 md:inline-flex">
       <span class="text-white/25">$</span>
       <span id="brew-command">brew tap muxy-app/tap && brew install --cask muxy</span>
       <button id="copy-brew" type="button" class="copy-btn ml-1 inline-flex h-6 w-6 items-center justify-center rounded-md border border-white/10 text-white/55" aria-label="Copy Homebrew install command" title="Copy command">
@@ -49,3 +53,4 @@ Still a terminal — now a workspace.</p>
     }, 1100);
   });
 </script>
+

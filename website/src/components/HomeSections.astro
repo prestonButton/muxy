@@ -92,19 +92,30 @@ const providers = [
 ];
 ---
 
-<section class="border-y border-white/10 px-12 pb-20 pt-[160px] text-center">
+<svg aria-hidden="true" class="absolute h-0 w-0 overflow-hidden" focusable="false">
+  <defs>
+    <linearGradient id="compat-pill-mobile-gradient" x1="0" x2="24" y1="0" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="38%" stop-color="#6366f1" />
+      <stop offset="68%" stop-color="#ec4899" />
+      <stop offset="100%" stop-color="#a78bfa" />
+    </linearGradient>
+  </defs>
+</svg>
+
+<section class="border-y border-white/10 px-6 pb-20 pt-[160px] text-center sm:px-12">
   <div class="mx-auto max-w-[800px]">
     <h2 class="mb-4 text-[clamp(32px,4vw,52px)] font-bold leading-[1.15] tracking-[-0.03em] text-white">Everything you expect from a terminal.</h2>
   </div>
-  <p class="mb-8 text-[clamp(18px,2vw,24px)] font-light tracking-[-0.01em] text-white/50">If it runs in a terminal, it runs in Muxy.</p>
-  <div class="mx-auto flex max-w-[720px] flex-wrap justify-center gap-2.5">
+  <p class="mx-auto mb-8 max-w-[42ch] text-[clamp(18px,2vw,24px)] font-light tracking-[-0.01em] text-white/50 sm:max-w-none">If it runs in a terminal, it runs in Muxy.</p>
+  <div class="compat-pills-wrap mx-auto flex max-w-[720px] flex-wrap justify-center gap-2.5">
     {compatTools.map((tool) => (
       <span class="compat-pill flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 transition-all duration-300">
         <span class="compat-pill-icon relative">
           <span class="compat-pill-ring absolute inset-0"></span>
-          <Icon name={tool.icon} class="relative h-3.5 w-3.5 text-white/40 transition-all duration-300" />
+          <Icon name={tool.icon} class="compat-pill-glyph relative h-3.5 w-3.5 text-white/40 transition-all duration-300" />
         </span>
-        <span class="font-mono text-xs text-white/50 transition-colors duration-300">{tool.name}</span>
+        <span class="compat-pill-name font-mono text-xs text-white/50 transition-colors duration-300">{tool.name}</span>
       </span>
     ))}
   </div>
@@ -200,4 +211,3 @@ const providers = [
     }, 1400);
   });
 </script>
-
