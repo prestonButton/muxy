@@ -50,11 +50,21 @@ jobs:
       - name: Build with Astro
         run: ASTRO_SITE="${{ steps.pages.outputs.origin }}" ASTRO_BASE="${{ steps.pages.outputs.base_path }}" npx astro build
 
-      - name: Verify built CSS assets
+      - name: Verify built assets
         run: |
           css_count=$(find dist -type f -name '*.css' | wc -l | tr -d ' ')
           if [ "$css_count" -eq 0 ]; then
             echo "No CSS assets found in dist."
+            exit 1
+          fi
+
+          if [ ! -f dist/assets/logo.svg ]; then
+            echo "Missing logo asset at dist/assets/logo.svg."
+            exit 1
+          fi
+
+          if ! grep -R "assets/logo.svg" dist/*.html dist/**/*.html >/dev/null 2>&1; then
+            echo "No HTML file references assets/logo.svg."
             exit 1
           fi
 
