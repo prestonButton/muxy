@@ -23,8 +23,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-      ASTRO_SITE: https://${{ github.repository_owner }}.github.io
-      ASTRO_BASE: /${{ github.event.repository.name }}/
     defaults:
       run:
         working-directory: website
@@ -43,13 +41,14 @@ jobs:
           bun-version: latest
 
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v6
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
       - name: Build with Astro
-        run: npx astro build
+        run: ASTRO_SITE="${{ steps.pages.outputs.origin }}" ASTRO_BASE="${{ steps.pages.outputs.base_path }}" npx astro build
 
       - name: Verify built CSS assets
         run: |

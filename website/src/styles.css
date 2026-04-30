@@ -22,11 +22,11 @@ body {
 
 .hero-logo-glow,
 .hero-logo-core {
-  mask-image: url("/assets/logo.svg");
+  mask-image: var(--logo-asset-url);
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: min(115vw, 1400px);
-  -webkit-mask-image: url("/assets/logo.svg");
+  -webkit-mask-image: var(--logo-asset-url);
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: min(115vw, 1400px);

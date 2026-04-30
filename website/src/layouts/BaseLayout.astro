@@ -44,7 +44,7 @@ const {
       <script is:inline type="application/ld+json" set:html={JSON.stringify(item)} />
     ))}
   </head>
-  <body class="bg-bg text-fg">
+  <body class="bg-bg text-fg" style={`--logo-asset-url: url('${import.meta.env.BASE_URL}assets/logo.svg')`}>
     <div class="pointer-events-none fixed inset-0 -z-10 [background:radial-gradient(ellipse_80%_50%_at_15%_-10%,rgba(34,211,238,0.165)_0%,transparent_55%),radial-gradient(ellipse_60%_70%_at_85%_10%,rgba(99,102,241,0.195)_0%,transparent_55%),radial-gradient(ellipse_50%_60%_at_5%_90%,rgba(236,72,153,0.12)_0%,transparent_55%),radial-gradient(ellipse_70%_50%_at_95%_80%,rgba(167,139,250,0.12)_0%,transparent_55%)]"></div>
     <slot />
   </body>
