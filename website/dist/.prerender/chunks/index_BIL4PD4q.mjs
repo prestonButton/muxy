@@ -1,0 +1,34 @@
+import { c as createComponent, $ as $$BaseLayout, a as $$Nav, b as $$Footer } from './BaseLayout_CeFVBpJn.mjs';
+import 'piccolore';
+import { r as renderComponent, a as renderTemplate, m as maybeRenderHead, b as addAttribute } from './prerender_DDhP9VAG.mjs';
+
+const $$Index = createComponent(($$result, $$props, $$slots) => {
+  const items = [
+    "Installation",
+    "Quick Start",
+    "Version Control",
+    "AI Integration",
+    "iOS App",
+    "CLI & URL Scheme",
+    "Contributing"
+  ];
+  return renderTemplate`${renderComponent($$result, "BaseLayout", $$BaseLayout, { "title": "Muxy docs" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "Nav", $$Nav, { "currentPath": "/docs" })} ${maybeRenderHead()}<main class="mx-auto mb-[60px] mt-20 flex min-h-[80vh] max-w-[1060px] gap-14 px-12"> <aside class="w-[190px] shrink-0 pt-2"> <p class="mb-4 text-[10px] font-bold uppercase tracking-[0.14em] text-white/30">Documentation</p> <nav> ${items.map((item, i) => renderTemplate`<a href="#"${addAttribute([
+    "mb-0.5 block rounded-[5px] border-l-2 px-2.5 py-1.5 text-[13px] transition-all duration-150",
+    i === 0 ? "border-accent bg-accent/15 text-white" : "border-transparent text-white/50 hover:text-white/75"
+  ], "class:list")}> ${item} </a>`)} </nav> </aside> <article class="max-w-[720px] flex-1 border-l border-white/10 pl-12 pt-2"> <h1 class="mb-7 text-[28px] font-bold tracking-[-0.02em] text-white">Installation</h1> <div class="mb-6 rounded-lg border border-accent/20 bg-accent/5 px-5 py-4 text-sm font-light leading-[1.75] text-white/65"> <p>Muxy is a real terminal first. Your shell, tools, and workflows work as-is from day one. On top of that, Muxy adds project-aware workspace features — tabs, splits, Git, themes, and shortcuts — that you can adopt incrementally.</p> </div> <div class="space-y-2 text-sm font-light leading-[1.8] text-white/65"> <p>Muxy requires macOS 14+.</p> <div class="h-2"></div> <p>Homebrew:</p> </div> <pre class="my-3 rounded-[7px] border border-white/10 bg-white/5 p-4 font-mono text-xs leading-[1.7] text-fg">brew tap muxy-app/tap
+brew install --cask muxy</pre> <p class="text-sm font-light leading-[1.8] text-white/65">Or download the <span class="font-semibold text-white">.dmg</span> from the releases page.</p> </article> </main> ${renderComponent($$result2, "Footer", $$Footer, {})} ` })}`;
+}, "/Users/prestonbutton/Developer/PB/muxy/website/src/pages/docs/index.astro", void 0);
+
+const $$file = "/Users/prestonbutton/Developer/PB/muxy/website/src/pages/docs/index.astro";
+const $$url = "/docs";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$Index,
+  file: $$file,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

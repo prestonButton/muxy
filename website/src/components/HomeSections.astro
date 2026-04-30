@@ -1,63 +1,160 @@
 ---
+import { Icon } from 'astro-icon/components';
+
+const compatTools = [
+  { name: 'zsh', icon: 'simple-icons:zsh' },
+  { name: 'bash', icon: 'simple-icons:gnubash' },
+  { name: 'fish', icon: 'simple-icons:fishshell' },
+  { name: 'tmux', icon: 'simple-icons:tmux' },
+  { name: 'neovim', icon: 'simple-icons:neovim' },
+  { name: 'git', icon: 'simple-icons:git' },
+  { name: 'node', icon: 'simple-icons:nodedotjs' },
+  { name: 'python', icon: 'simple-icons:python' },
+  { name: 'docker', icon: 'simple-icons:docker' },
+  { name: 'rust', icon: 'simple-icons:rust' },
+  { name: 'ssh', icon: 'lucide:square-terminal' },
+  { name: 'claude code', icon: 'simple-icons:claude' },
+  { name: 'codex', icon: 'simple-icons:openai' },
+  { name: 'opencode', icon: 'simple-icons:gnometerminal' },
+  { name: 'copilot', icon: 'simple-icons:githubcopilot' },
+  { name: 'cursor', icon: 'simple-icons:cursor' },
+];
+
 const features = [
   {
-    n: '01',
-    title: 'Works with everything you already use',
-    body: 'Neovim, tmux workflows, Claude Code, Cursor, zsh, fish, bash — if it runs in a terminal, it runs in Muxy. No adapters, no plugins, no changes.',
+    icon: 'lucide:panel-left',
+    title: 'Project vertical tabs',
+    desc: 'A true vertical tab layout where each project gets its own tab for fast context switching.',
   },
   {
-    n: '02',
-    title: 'Zero config to start',
-    body: 'Open a folder and start working. No setup file required. Configure as much or as little as you want — Muxy works either way.',
+    icon: 'lucide:panels-top-left',
+    title: 'Splits inside each project',
+    desc: 'Use horizontal and vertical splits within a project tab, with keyboard navigation and resizing.',
   },
   {
-    n: '03',
-    title: 'Project-based workspace',
-    body: 'Every project gets its own tabs, splits, worktrees, and focus state. Close Muxy. Come back. Everything is where you left it.',
+    icon: 'lucide:folder-code',
+    title: 'Project workspaces',
+    desc: 'Your workspace is structured around projects first, then tabs and splits inside each one.',
   },
   {
-    n: '04',
-    title: 'Git without switching context',
-    body: 'Stage, commit, push, pull, diff, branch, PR — in an attached panel that never obscures your terminal.',
+    icon: 'lucide:save',
+    title: 'Persistent state',
+    desc: 'Tabs, splits, and focus restore per project so you resume exactly where you left off.',
   },
   {
-    n: '05',
-    title: 'AI agent cockpit',
-    body: 'Live usage quotas for Claude, Codex, Copilot, Cursor. Notification hooks. Unix socket IPC. Built for the way you work now.',
+    icon: 'lucide:git-branch',
+    title: 'Built-in VCS',
+    desc: 'Stage, commit, push, pull, and manage PRs without breaking terminal flow.',
+  },
+  {
+    icon: 'lucide:search',
+    title: 'In-terminal search',
+    desc: 'Find matches across output instantly with keyboard-first navigation.',
+  },
+  {
+    icon: 'lucide:palette',
+    title: '200+ themes',
+    desc: 'Use your preferred terminal look with a fast live-preview theme picker.',
+  },
+  {
+    icon: 'lucide:keyboard',
+    title: '40+ shortcuts',
+    desc: 'Tune commands to your muscle memory with conflict detection built in.',
+  },
+  {
+    icon: 'lucide:file-pen',
+    title: 'Built-in editor',
+    desc: 'Handle quick config and note edits without leaving your workspace.',
+  },
+  {
+    icon: 'lucide:file-text',
+    title: 'Markdown editing & preview',
+    desc: 'Write and view Markdown docs directly inside Muxy while you work.',
+  },
+  {
+    icon: 'lucide:smartphone',
+    title: 'iOS companion',
+    desc: 'Connect iPhone or iPad on local network for terminal access on the move.',
+  },
+  {
+    icon: 'lucide:square-terminal',
+    title: 'Shell-native by default',
+    desc: 'No migration or extra setup. Your existing shell workflow runs unchanged.',
   },
 ];
 
-const providers = ['claude', 'codex', 'copilot', 'cursor', 'amp'];
+const providers = [
+  { name: 'claude', icon: 'simple-icons:claude' },
+  { name: 'codex', icon: 'simple-icons:openai' },
+  { name: 'copilot', icon: 'simple-icons:githubcopilot' },
+  { name: 'cursor', icon: 'simple-icons:cursor' },
+  { name: 'opencode', icon: 'simple-icons:gnometerminal' },
+];
 ---
 
-<section class="px-12 py-[140px] text-center">
+<section class="border-y border-white/10 px-12 pb-20 pt-[160px] text-center">
   <div class="mx-auto max-w-[800px]">
-    <h2 class="mb-6 text-[clamp(32px,4vw,52px)] font-bold leading-[1.15] tracking-[-0.03em] text-white">Every terminal tool you use<br />already works inside Muxy.</h2>
-    <p class="mx-auto max-w-[520px] text-[17px] font-light leading-[1.75] text-white/50">Muxy is built on libghostty — the same rendering engine as Ghostty. If it runs in a terminal, it runs here. Zero configuration required to get started. Every config option available when you want it.</p>
+    <h2 class="mb-4 text-[clamp(32px,4vw,52px)] font-bold leading-[1.15] tracking-[-0.03em] text-white">Everything you expect from a terminal.</h2>
+  </div>
+  <p class="mb-8 text-[clamp(18px,2vw,24px)] font-light tracking-[-0.01em] text-white/50">If it runs in a terminal, it runs in Muxy.</p>
+  <div class="mx-auto flex max-w-[720px] flex-wrap justify-center gap-2.5">
+    {compatTools.map((tool) => (
+      <span class="compat-pill flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 transition-all duration-300">
+        <span class="compat-pill-icon relative">
+          <span class="compat-pill-ring absolute inset-0"></span>
+          <Icon name={tool.icon} class="relative h-3.5 w-3.5 text-white/40 transition-all duration-300" />
+        </span>
+        <span class="font-mono text-xs text-white/50 transition-colors duration-300">{tool.name}</span>
+      </span>
+    ))}
+  </div>
+  <div class="mx-auto mt-16 grid max-w-[980px] gap-3 text-left sm:grid-cols-2 lg:grid-cols-3 [&>.feature-card:hover]:-translate-y-0.5 [&>.feature-card:nth-child(3n+1):hover]:border-cyan/45 [&>.feature-card:nth-child(3n+1):hover]:bg-cyan/10 [&>.feature-card:nth-child(3n+1):hover]:shadow-[0_0_30px_rgba(34,211,238,0.18)] [&>.feature-card:nth-child(3n+2):hover]:border-violet/45 [&>.feature-card:nth-child(3n+2):hover]:bg-violet/10 [&>.feature-card:nth-child(3n+2):hover]:shadow-[0_0_30px_rgba(167,139,250,0.2)] [&>.feature-card:nth-child(3n+3):hover]:border-pink/45 [&>.feature-card:nth-child(3n+3):hover]:bg-pink/10 [&>.feature-card:nth-child(3n+3):hover]:shadow-[0_0_30px_rgba(236,72,153,0.18)]">
+    <div class="feature-card rounded-xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-all duration-300">
+      <p class="text-xs font-semibold uppercase tracking-[0.12em] text-cyan">No migration</p>
+      <p class="mt-2 text-sm leading-[1.6] text-white/60">Open Muxy and run the same shell commands, tools, and scripts you already use.</p>
+    </div>
+    <div class="feature-card rounded-xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-all duration-300">
+      <p class="text-xs font-semibold uppercase tracking-[0.12em] text-violet">No extra config</p>
+      <p class="mt-2 text-sm leading-[1.6] text-white/60">Your terminal workflow stays intact, then Muxy layers workspace structure on top.</p>
+    </div>
+    <div class="feature-card rounded-xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-all duration-300 sm:col-span-2 lg:col-span-1">
+      <p class="text-xs font-semibold uppercase tracking-[0.12em] text-pink">More leverage</p>
+      <p class="mt-2 text-sm leading-[1.6] text-white/60">Projects, tabs, splits, and integrated tooling make the switch an obvious upgrade.</p>
+    </div>
   </div>
 </section>
 
-<section class="mx-auto max-w-[1100px] px-12 pb-[120px] pt-[60px]">
-  <p class="mb-16 text-left text-[11px] font-semibold uppercase tracking-[0.15em] text-white/30">Features</p>
-  <div>
+<section class="mx-auto max-w-[1120px] px-6 pb-[120px] pt-[80px] sm:px-12">
+  <div class="mb-14 text-center">
+    <h2 class="mb-4 text-[clamp(28px,4vw,44px)] font-bold leading-[1.1] tracking-[-0.03em] text-white">Start with your terminal.<br />Upgrade everything around it.</h2>
+    <p class="mx-auto max-w-[560px] text-base font-light leading-[1.65] text-white/50">Muxy keeps your shell workflow untouched, then adds project-aware structure and native tooling that makes switching feel obvious.</p>
+  </div>
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 [&>.feature-card:hover]:-translate-y-0.5 [&>.feature-card:nth-child(4n+1):hover]:border-cyan/45 [&>.feature-card:nth-child(4n+1):hover]:bg-cyan/10 [&>.feature-card:nth-child(4n+1):hover]:shadow-[0_0_30px_rgba(34,211,238,0.18)] [&>.feature-card:nth-child(4n+1)_.feature-icon]:text-cyan [&>.feature-card:nth-child(4n+2):hover]:border-accent/45 [&>.feature-card:nth-child(4n+2):hover]:bg-accent/10 [&>.feature-card:nth-child(4n+2):hover]:shadow-[0_0_30px_rgba(99,102,241,0.22)] [&>.feature-card:nth-child(4n+2)_.feature-icon]:text-accent [&>.feature-card:nth-child(4n+3):hover]:border-pink/45 [&>.feature-card:nth-child(4n+3):hover]:bg-pink/10 [&>.feature-card:nth-child(4n+3):hover]:shadow-[0_0_30px_rgba(236,72,153,0.18)] [&>.feature-card:nth-child(4n+3)_.feature-icon]:text-pink [&>.feature-card:nth-child(4n+4):hover]:border-violet/45 [&>.feature-card:nth-child(4n+4):hover]:bg-violet/10 [&>.feature-card:nth-child(4n+4):hover]:shadow-[0_0_30px_rgba(167,139,250,0.2)] [&>.feature-card:nth-child(4n+4)_.feature-icon]:text-violet">
     {features.map((f) => (
-      <div class="grid grid-cols-[60px_1fr] gap-x-12 border-t border-white/10 py-9 md:grid-cols-[60px_1fr_1.2fr]">
-        <p class="pt-1.5 font-mono text-[11px] tracking-[0.06em] text-white/20">{f.n}</p>
-        <h3 class="text-[clamp(18px,1.8vw,22px)] font-bold leading-[1.25] tracking-[-0.02em] text-white">{f.title}</h3>
-        <p class="text-sm font-light leading-[1.75] text-white/55">{f.body}</p>
+      <div class="feature-card group flex cursor-default flex-col gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-all duration-300">
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.06]">
+          <Icon name={f.icon} class="feature-icon h-[18px] w-[18px] text-white/70 transition-colors duration-300" />
+        </div>
+        <h3 class="text-sm font-semibold tracking-[-0.01em] text-white">{f.title}</h3>
+        <p class="text-[13px] leading-[1.6] text-white/50">{f.desc}</p>
       </div>
     ))}
   </div>
 </section>
 
+<section class="mx-auto max-w-[860px] px-12 pb-[100px] text-center">
+  <p class="text-base font-light leading-[1.75] text-white/55">Muxy is still your terminal at its core. No new language, no workflow reset, no mandatory setup. Just your existing shell workflow plus a cleaner way to manage real project work.</p>
+</section>
+
 <section class="relative overflow-hidden border-y border-white/10 px-12 py-[100px] text-center">
   <div class="pointer-events-none absolute inset-0 -z-10 [background:linear-gradient(135deg,rgba(34,211,238,0.05)_0%,rgba(99,102,241,0.08)_40%,rgba(236,72,153,0.05)_80%,rgba(167,139,250,0.04)_100%)]"></div>
-  <h3 class="mx-auto mb-6 max-w-4xl text-[clamp(28px,3.5vw,48px)] font-extrabold leading-[1.1] tracking-[-0.03em] text-white">Works with every AI tool you already use.</h3>
-  <div class="mt-10 flex flex-wrap justify-center gap-4">
-    {providers.map((name) => (
+  <h3 class="mx-auto mb-4 max-w-3xl text-[clamp(24px,3vw,40px)] font-bold leading-[1.15] tracking-[-0.03em] text-white">Bring your AI tools when you want them.</h3>
+  <p class="mx-auto mb-10 max-w-[620px] text-base font-light leading-[1.7] text-white/50">Muxy works great without AI, but if you bring AI agents into your workflow, Muxy is optimized to work with them and keeps your whole project in one place.</p>
+  <div class="flex flex-wrap justify-center gap-4">
+    {providers.map((p) => (
       <div class="flex items-center gap-2 rounded-[7px] border border-white/10 bg-bg/60 px-4 py-2 backdrop-blur">
-        <img src={`/assets/icons/${name}.svg`} alt={name} class="h-4 w-4 opacity-65 [filter:brightness(0)_invert(1)]" />
-        <span class="font-mono text-xs text-white/60">{name}</span>
+        <Icon name={p.icon} class="h-4 w-4 text-white/60" />
+        <span class="font-mono text-xs text-white/60">{p.name}</span>
       </div>
     ))}
   </div>
@@ -65,16 +162,42 @@ const providers = ['claude', 'codex', 'copilot', 'cursor', 'amp'];
 
 <section class="px-12 py-[120px] text-center">
   <div class="mx-auto max-w-[640px]">
-    <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-white/50">Free forever</div>
     <h3 class="mb-6 text-[clamp(36px,5vw,64px)] font-black leading-[0.95] tracking-[-0.04em] text-white">Open source.<br />No strings.</h3>
     <p class="mb-12 text-base font-light leading-[1.7] text-white/50">MIT license. No account required. No telemetry. The code is on GitHub — contribute, fork, extend.</p>
     <div class="mb-7 inline-flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-6 py-3 font-mono text-xs text-white/60">
       <span class="text-white/25">$</span>
-      brew tap muxy-app/tap && brew install --cask muxy
+      <span id="footer-brew-command">brew tap muxy-app/tap && brew install --cask muxy</span>
+      <button id="copy-footer-brew" type="button" class="copy-btn inline-flex h-6 w-6 items-center justify-center rounded-md border border-white/10 text-white/55" aria-label="Copy Homebrew install command" title="Copy command">
+        <svg viewBox="0 0 24 24" class="copy-icon h-3.5 w-3.5" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="9" y="9" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.8"></rect>
+          <path d="M7 15H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+        </svg>
+        <svg viewBox="0 0 24 24" class="check-icon h-3.5 w-3.5" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 12.5l4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
     </div>
+    <p class="mb-8 text-sm font-medium text-white/40">Start as a terminal. Grow into a full project workspace.</p>
     <div class="flex flex-wrap justify-center gap-3">
       <a href="https://github.com/muxy-app/muxy/releases" class="primary-btn rounded-lg bg-muxy-gradient px-8 py-3 text-sm font-semibold text-white">Download .dmg</a>
-      <a href="https://github.com/muxy-app/muxy" class="secondary-glow-btn rounded-lg border border-white/15 px-6 py-3 text-sm text-white/65">View on GitHub ↗</a>
+      <a href="https://github.com/muxy-app/muxy" class="secondary-glow-btn group rounded-lg border border-white/15 px-6 py-3 text-sm text-white/65">View on GitHub <span class="inline-block transition-transform duration-200 group-hover:animate-[github-arrow-bounce_1s_ease-in-out_infinite]">↗</span></a>
     </div>
   </div>
 </section>
+
+<script>
+  const footerCopyButton = document.getElementById('copy-footer-brew');
+  const footerBrewCommand = document.getElementById('footer-brew-command')?.textContent?.trim() ?? '';
+
+  footerCopyButton?.addEventListener('click', async () => {
+    if (!footerBrewCommand) {
+      return;
+    }
+    await navigator.clipboard.writeText(footerBrewCommand);
+    footerCopyButton.classList.add('copied');
+    setTimeout(() => {
+      footerCopyButton.classList.remove('copied');
+    }, 1400);
+  });
+</script>
+
