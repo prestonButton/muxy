@@ -4,9 +4,56 @@ import Hero from '../components/Hero.astro';
 import HomeSections from '../components/HomeSections.astro';
 import Nav from '../components/Nav.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const siteUrl = 'https://muxy.app';
+const pageUrl = `${siteUrl}/`;
+const ogImage = `${siteUrl}/assets/logo.svg`;
+const description =
+  'Muxy is a native macOS terminal multiplexer built for modern AI-driven workflows with tabs, splits, and fast keyboard-first navigation.';
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Muxy',
+    url: siteUrl,
+    description,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Muxy',
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'macOS',
+    url: pageUrl,
+    description,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Muxy',
+    url: siteUrl,
+    logo: ogImage,
+    sameAs: [
+      'https://github.com/muxy-app/muxy',
+      'https://discord.gg/4eMXAmJQ2n',
+    ],
+  },
+];
 ---
 
-<BaseLayout title="Muxy — Terminal multiplexer for the AI era">
+<BaseLayout
+  title="Muxy — Terminal multiplexer for the AI era"
+  description={description}
+  canonicalUrl={pageUrl}
+  ogImage={ogImage}
+  structuredData={structuredData}
+>
   <Nav currentPath={Astro.url.pathname} />
   <main>
     <Hero />

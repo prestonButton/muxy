@@ -3,9 +3,21 @@ import '../styles.css';
 
 interface Props {
   title: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  structuredData?: Array<Record<string, unknown>>;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description,
+  canonicalUrl,
+  ogImage,
+  noindex = false,
+  structuredData = [],
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -15,6 +27,22 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/assets/logo.svg" />
     <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Muxy" />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    {structuredData.map((item) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(item)} />
+    ))}
   </head>
   <body class="bg-bg text-fg">
     <div class="pointer-events-none fixed inset-0 -z-10 [background:radial-gradient(ellipse_80%_50%_at_15%_-10%,rgba(34,211,238,0.165)_0%,transparent_55%),radial-gradient(ellipse_60%_70%_at_85%_10%,rgba(99,102,241,0.195)_0%,transparent_55%),radial-gradient(ellipse_50%_60%_at_5%_90%,rgba(236,72,153,0.12)_0%,transparent_55%),radial-gradient(ellipse_70%_50%_at_95%_80%,rgba(167,139,250,0.12)_0%,transparent_55%)]"></div>

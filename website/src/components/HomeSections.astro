@@ -140,14 +140,16 @@ const providers = [
     <h2 class="mb-4 text-[clamp(28px,4vw,44px)] font-bold leading-[1.1] tracking-[-0.03em] text-white">Start with your terminal.<br />Upgrade everything around it.</h2>
     <p class="mx-auto max-w-[560px] text-base font-light leading-[1.65] text-white/50">Muxy keeps your shell workflow untouched, then adds project-aware structure and native tooling that makes switching feel obvious.</p>
   </div>
-  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 [&>.feature-card:hover]:-translate-y-0.5 [&>.feature-card:nth-child(4n+1):hover]:border-cyan/45 [&>.feature-card:nth-child(4n+1):hover]:bg-cyan/10 [&>.feature-card:nth-child(4n+1):hover]:shadow-[0_0_30px_rgba(34,211,238,0.18)] [&>.feature-card:nth-child(4n+1)_.feature-icon]:text-cyan [&>.feature-card:nth-child(4n+2):hover]:border-accent/45 [&>.feature-card:nth-child(4n+2):hover]:bg-accent/10 [&>.feature-card:nth-child(4n+2):hover]:shadow-[0_0_30px_rgba(99,102,241,0.22)] [&>.feature-card:nth-child(4n+2)_.feature-icon]:text-accent [&>.feature-card:nth-child(4n+3):hover]:border-pink/45 [&>.feature-card:nth-child(4n+3):hover]:bg-pink/10 [&>.feature-card:nth-child(4n+3):hover]:shadow-[0_0_30px_rgba(236,72,153,0.18)] [&>.feature-card:nth-child(4n+3)_.feature-icon]:text-pink [&>.feature-card:nth-child(4n+4):hover]:border-violet/45 [&>.feature-card:nth-child(4n+4):hover]:bg-violet/10 [&>.feature-card:nth-child(4n+4):hover]:shadow-[0_0_30px_rgba(167,139,250,0.2)] [&>.feature-card:nth-child(4n+4)_.feature-icon]:text-violet">
+  <div class="grid grid-cols-1 gap-2.5 sm:gap-4 lg:grid-cols-4 [&>.feature-card:hover]:-translate-y-0.5 [&>.feature-card:nth-child(4n+1):hover]:border-cyan/45 [&>.feature-card:nth-child(4n+1):hover]:bg-cyan/10 [&>.feature-card:nth-child(4n+1):hover]:shadow-[0_0_30px_rgba(34,211,238,0.18)] [&>.feature-card:nth-child(4n+1)_.feature-icon]:text-cyan [&>.feature-card:nth-child(4n+2):hover]:border-accent/45 [&>.feature-card:nth-child(4n+2):hover]:bg-accent/10 [&>.feature-card:nth-child(4n+2):hover]:shadow-[0_0_30px_rgba(99,102,241,0.22)] [&>.feature-card:nth-child(4n+2)_.feature-icon]:text-accent [&>.feature-card:nth-child(4n+3):hover]:border-pink/45 [&>.feature-card:nth-child(4n+3):hover]:bg-pink/10 [&>.feature-card:nth-child(4n+3):hover]:shadow-[0_0_30px_rgba(236,72,153,0.18)] [&>.feature-card:nth-child(4n+3)_.feature-icon]:text-pink [&>.feature-card:nth-child(4n+4):hover]:border-violet/45 [&>.feature-card:nth-child(4n+4):hover]:bg-violet/10 [&>.feature-card:nth-child(4n+4):hover]:shadow-[0_0_30px_rgba(167,139,250,0.2)] [&>.feature-card:nth-child(4n+4)_.feature-icon]:text-violet">
     {features.map((f) => (
-      <div class="feature-card group flex cursor-default flex-col gap-3 rounded-xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-all duration-300">
-        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.06]">
-          <Icon name={f.icon} class="feature-icon h-[18px] w-[18px] text-white/70 transition-colors duration-300" />
+      <div class="feature-card group flex cursor-default flex-col gap-1.5 rounded-xl border border-white/10 bg-white/[0.03] p-3 sm:gap-3 sm:p-5 backdrop-blur-sm transition-all duration-300">
+        <div class="flex items-center gap-2.5 sm:block">
+          <div class="flex h-7 w-7 items-center justify-center rounded-lg bg-white/[0.06] sm:h-9 sm:w-9">
+            <Icon name={f.icon} class="feature-icon h-4 w-4 sm:h-[18px] sm:w-[18px] text-white/70 transition-colors duration-300" />
+          </div>
+          <h3 class="text-[13px] sm:mt-3 sm:text-sm font-semibold tracking-[-0.01em] text-white">{f.title}</h3>
         </div>
-        <h3 class="text-sm font-semibold tracking-[-0.01em] text-white">{f.title}</h3>
-        <p class="text-[13px] leading-[1.6] text-white/50">{f.desc}</p>
+        <p class="text-[12px] sm:text-[13px] leading-[1.4] sm:leading-[1.6] text-white/50">{f.desc}</p>
       </div>
     ))}
   </div>
@@ -175,7 +177,7 @@ const providers = [
   <div class="mx-auto max-w-[640px]">
     <h3 class="mb-6 text-[clamp(36px,5vw,64px)] font-black leading-[0.95] tracking-[-0.04em] text-white">Open source.<br />No strings.</h3>
     <p class="mb-12 text-base font-light leading-[1.7] text-white/50">MIT license. No account required. No telemetry. The code is on GitHub — contribute, fork, extend.</p>
-    <div class="mb-7 inline-flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-6 py-3 font-mono text-xs text-white/60">
+    <div class="mb-7 hidden sm:inline-flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-6 py-3 font-mono text-xs text-white/60">
       <span class="text-white/25">$</span>
       <span id="footer-brew-command">brew tap muxy-app/tap && brew install --cask muxy</span>
       <button id="copy-footer-brew" type="button" class="copy-btn inline-flex h-6 w-6 items-center justify-center rounded-md border border-white/10 text-white/55" aria-label="Copy Homebrew install command" title="Copy command">
@@ -188,10 +190,10 @@ const providers = [
         </svg>
       </button>
     </div>
-    <p class="mb-8 text-sm font-medium text-white/40">Start as a terminal. Grow into a full project workspace.</p>
+    <p class="mb-8 hidden text-sm font-medium text-white/40 sm:block">Start as a terminal. Grow into a full project workspace.</p>
     <div class="flex flex-wrap justify-center gap-3">
-      <a href="https://github.com/muxy-app/muxy/releases" class="primary-btn rounded-lg bg-muxy-gradient px-8 py-3 text-sm font-semibold text-white">Download .dmg</a>
-      <a href="https://github.com/muxy-app/muxy" class="secondary-glow-btn group rounded-lg border border-white/15 px-6 py-3 text-sm text-white/65">View on GitHub <span class="inline-block transition-transform duration-200 group-hover:animate-[github-arrow-bounce_1s_ease-in-out_infinite]">↗</span></a>
+      <a href="https://github.com/muxy-app/muxy/releases" class="primary-btn hidden rounded-lg bg-muxy-gradient px-8 py-3 text-sm font-semibold text-white sm:inline-block">Download .dmg</a>
+      <a href="https://github.com/muxy-app/muxy" data-github-app-link-home="true" class="secondary-glow-btn group rounded-lg border border-white/15 px-6 py-3 text-sm text-white/65">View on GitHub <span class="inline-block transition-transform duration-200 group-hover:animate-[github-arrow-bounce_1s_ease-in-out_infinite]">↗</span></a>
     </div>
   </div>
 </section>
@@ -199,6 +201,7 @@ const providers = [
 <script>
   const footerCopyButton = document.getElementById('copy-footer-brew');
   const footerBrewCommand = document.getElementById('footer-brew-command')?.textContent?.trim() ?? '';
+  const githubAppLinkHome = document.querySelector('[data-github-app-link-home="true"]');
 
   footerCopyButton?.addEventListener('click', async () => {
     if (!footerBrewCommand) {
@@ -209,5 +212,18 @@ const providers = [
     setTimeout(() => {
       footerCopyButton.classList.remove('copied');
     }, 1400);
+  });
+
+  githubAppLinkHome?.addEventListener('click', (event) => {
+    if (!/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      return;
+    }
+    event.preventDefault();
+    const fallbackUrl = 'https://github.com/muxy-app/muxy';
+    const appUrl = 'github://openRepo/https://github.com/muxy-app/muxy';
+    window.location.href = appUrl;
+    window.setTimeout(() => {
+      window.location.href = fallbackUrl;
+    }, 700);
   });
 </script>
