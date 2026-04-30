@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - muxy-site
+    paths:
+      - 'website/**'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
 permissions:
@@ -20,6 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      ASTRO_SITE: https://${{ github.repository_owner }}.github.io
+      ASTRO_BASE: /${{ github.event.repository.name }}/
     defaults:
       run:
         working-directory: website
@@ -45,6 +50,14 @@ jobs:
 
       - name: Build with Astro
         run: npx astro build
+
+      - name: Verify built CSS assets
+        run: |
+          css_count=$(find dist -type f -name '*.css' | wc -l | tr -d ' ')
+          if [ "$css_count" -eq 0 ]; then
+            echo "No CSS assets found in dist."
+            exit 1
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4

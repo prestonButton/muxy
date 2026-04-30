@@ -3,7 +3,12 @@ import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
 
+const site = process.env.ASTRO_SITE ?? 'https://prestonbutton.github.io';
+const base = process.env.ASTRO_BASE ?? '/muxy/';
+
 export default defineConfig({
+  site,
+  base,
   integrations: [
     tailwind(),
     mdx(),
