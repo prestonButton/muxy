@@ -1,0 +1,80 @@
+---
+const features = [
+  {
+    n: '01',
+    title: 'Works with everything you already use',
+    body: 'Neovim, tmux workflows, Claude Code, Cursor, zsh, fish, bash — if it runs in a terminal, it runs in Muxy. No adapters, no plugins, no changes.',
+  },
+  {
+    n: '02',
+    title: 'Zero config to start',
+    body: 'Open a folder and start working. No setup file required. Configure as much or as little as you want — Muxy works either way.',
+  },
+  {
+    n: '03',
+    title: 'Project-based workspace',
+    body: 'Every project gets its own tabs, splits, worktrees, and focus state. Close Muxy. Come back. Everything is where you left it.',
+  },
+  {
+    n: '04',
+    title: 'Git without switching context',
+    body: 'Stage, commit, push, pull, diff, branch, PR — in an attached panel that never obscures your terminal.',
+  },
+  {
+    n: '05',
+    title: 'AI agent cockpit',
+    body: 'Live usage quotas for Claude, Codex, Copilot, Cursor. Notification hooks. Unix socket IPC. Built for the way you work now.',
+  },
+];
+
+const providers = ['claude', 'codex', 'copilot', 'cursor', 'amp'];
+---
+
+<section class="px-12 py-[140px] text-center">
+  <div class="mx-auto max-w-[800px]">
+    <h2 class="mb-6 text-[clamp(32px,4vw,52px)] font-bold leading-[1.15] tracking-[-0.03em] text-white">Every terminal tool you use<br />already works inside Muxy.</h2>
+    <p class="mx-auto max-w-[520px] text-[17px] font-light leading-[1.75] text-white/50">Muxy is built on libghostty — the same rendering engine as Ghostty. If it runs in a terminal, it runs here. Zero configuration required to get started. Every config option available when you want it.</p>
+  </div>
+</section>
+
+<section class="mx-auto max-w-[1100px] px-12 pb-[120px] pt-[60px]">
+  <p class="mb-16 text-left text-[11px] font-semibold uppercase tracking-[0.15em] text-white/30">Features</p>
+  <div>
+    {features.map((f) => (
+      <div class="grid grid-cols-[60px_1fr] gap-x-12 border-t border-white/10 py-9 md:grid-cols-[60px_1fr_1.2fr]">
+        <p class="pt-1.5 font-mono text-[11px] tracking-[0.06em] text-white/20">{f.n}</p>
+        <h3 class="text-[clamp(18px,1.8vw,22px)] font-bold leading-[1.25] tracking-[-0.02em] text-white">{f.title}</h3>
+        <p class="text-sm font-light leading-[1.75] text-white/55">{f.body}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section class="relative overflow-hidden border-y border-white/10 px-12 py-[100px] text-center">
+  <div class="pointer-events-none absolute inset-0 -z-10 [background:linear-gradient(135deg,rgba(34,211,238,0.05)_0%,rgba(99,102,241,0.08)_40%,rgba(236,72,153,0.05)_80%,rgba(167,139,250,0.04)_100%)]"></div>
+  <h3 class="mx-auto mb-6 max-w-4xl text-[clamp(28px,3.5vw,48px)] font-extrabold leading-[1.1] tracking-[-0.03em] text-white">Works with every AI tool you already use.</h3>
+  <div class="mt-10 flex flex-wrap justify-center gap-4">
+    {providers.map((name) => (
+      <div class="flex items-center gap-2 rounded-[7px] border border-white/10 bg-bg/60 px-4 py-2 backdrop-blur">
+        <img src={`/assets/icons/${name}.svg`} alt={name} class="h-4 w-4 opacity-65 [filter:brightness(0)_invert(1)]" />
+        <span class="font-mono text-xs text-white/60">{name}</span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section class="px-12 py-[120px] text-center">
+  <div class="mx-auto max-w-[640px]">
+    <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-white/50">Free forever</div>
+    <h3 class="mb-6 text-[clamp(36px,5vw,64px)] font-black leading-[0.95] tracking-[-0.04em] text-white">Open source.<br />No strings.</h3>
+    <p class="mb-12 text-base font-light leading-[1.7] text-white/50">MIT license. No account required. No telemetry. The code is on GitHub — contribute, fork, extend.</p>
+    <div class="mb-7 inline-flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-6 py-3 font-mono text-xs text-white/60">
+      <span class="text-white/25">$</span>
+      brew tap muxy-app/tap && brew install --cask muxy
+    </div>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="https://github.com/muxy-app/muxy/releases" class="primary-btn rounded-lg bg-muxy-gradient px-8 py-3 text-sm font-semibold text-white">Download .dmg</a>
+      <a href="https://github.com/muxy-app/muxy" class="secondary-glow-btn rounded-lg border border-white/15 px-6 py-3 text-sm text-white/65">View on GitHub ↗</a>
+    </div>
+  </div>
+</section>

@@ -11,7 +11,7 @@ Build and maintain the Muxy website using Astro in `website/`.
 - TypeScript (strict)
 
 ## Source of Truth for Design
-- Follow the Muxy Design System and website UI kit first.
+- Follow the Muxy Design System and website UI kit first. located at ./../../MuxyDesignSystem/ and the UI kit which has the initial design of the website we will use at ./../../MuxyDesignSystem/ui_kits/website/. This is the most important rule to follow.
 - If design references are external, sync required tokens/assets into this repo before implementation.
 - Do not invent styles when a design token/component exists.
 

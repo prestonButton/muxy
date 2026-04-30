@@ -1,0 +1,51 @@
+<section id="hero" class="hero-spotlight relative isolate flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pb-20 pt-32 text-center" style="--mx: 46%; --my: 40%;">
+  <div class="hero-veil pointer-events-none absolute inset-0 z-0"></div>
+  <div class="hero-logo-core pointer-events-none absolute inset-0 z-0 opacity-40"></div>
+  <div class="hero-logo-glow pointer-events-none absolute inset-0 z-0"></div>
+  <div class="relative z-10 flex flex-col items-center">
+    <div class="mb-9 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-medium tracking-[0.02em] text-white/75">
+      <span class="pulse-dot h-1.5 w-1.5 rounded-full bg-accent"></span>
+      Still a terminal. Just better
+    </div>
+    <h1 class="mb-8 max-w-5xl text-[clamp(84px,13vw,180px)] font-black leading-[0.92] tracking-[-0.04em] text-white">Muxy</h1>
+    <p class="mb-12 max-w-[560px] whitespace-pre-line text-[clamp(18px,2.4vw,26px)] font-light leading-[1.4] tracking-[-0.01em] text-white/60">Lightweight. Open source.
+Built on libghostty.</p>
+    <div class="mb-12 flex flex-wrap justify-center gap-3">
+      <a href="/download" class="primary-btn rounded-lg bg-muxy-gradient px-8 py-3.5 text-sm font-semibold tracking-[-0.01em] text-white shadow-[0_0_40px_rgba(99,102,241,0.25)]">Download for Mac</a>
+      <a href="/docs" class="secondary-glow-btn docs-cta rounded-lg border border-white/15 px-7 py-3.5 text-sm font-medium tracking-[-0.01em] text-white/70">Read the docs <span class="docs-cta-arrow">→</span></a>
+    </div>
+    <div class="inline-flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 font-mono text-xs text-white/55">
+      <span class="text-white/25">$</span>
+      <span id="brew-command">brew tap muxy-app/tap && brew install --cask muxy</span>
+      <button id="copy-brew" type="button" class="copy-btn ml-1 inline-flex h-6 w-6 items-center justify-center rounded-md border border-white/10 text-white/55" aria-label="Copy Homebrew install command" title="Copy command">
+        <svg viewBox="0 0 24 24" class="copy-icon h-3.5 w-3.5" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 8.75C8 7.50736 9.00736 6.5 10.25 6.5H17.25C18.4926 6.5 19.5 7.50736 19.5 8.75V15.75C19.5 16.9926 18.4926 18 17.25 18H10.25C9.00736 18 8 16.9926 8 15.75V8.75Z" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M4.5 14.75V6.75C4.5 5.50736 5.50736 4.5 6.75 4.5H14.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <svg viewBox="0 0 24 24" class="check-icon h-3.5 w-3.5" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.5 12.5L10 17L18.5 8.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="scroll-cue absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[10px] uppercase tracking-[0.14em] text-white/45">
+    <span>Scroll</span>
+    <span class="scroll-cue-arrow">↓</span>
+  </div>
+</section>
+
+<script>
+  const copyButton = document.getElementById('copy-brew');
+  const brewCommand = document.getElementById('brew-command')?.textContent?.trim() ?? '';
+
+  copyButton?.addEventListener('click', async () => {
+    if (!brewCommand) {
+      return;
+    }
+    await navigator.clipboard.writeText(brewCommand);
+    copyButton.classList.add('copied');
+    setTimeout(() => {
+      copyButton.classList.remove('copied');
+    }, 1100);
+  });
+</script>

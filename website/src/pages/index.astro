@@ -1,0 +1,16 @@
+---
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import HomeSections from '../components/HomeSections.astro';
+import Nav from '../components/Nav.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Muxy — Terminal multiplexer for the AI era">
+  <Nav currentPath={Astro.url.pathname} />
+  <main>
+    <Hero />
+    <HomeSections />
+  </main>
+  <Footer />
+</BaseLayout>
