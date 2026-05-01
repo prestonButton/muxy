@@ -4,7 +4,7 @@ import icon from 'astro-icon';
 import { defineConfig } from 'astro/config';
 
 const site = process.env.ASTRO_SITE ?? 'https://prestonbutton.github.io';
-const rawBase = process.env.ASTRO_BASE ?? '/muxy/';
+const rawBase = process.env.ASTRO_BASE ?? '/';
 const base = rawBase === '/' ? '/' : `/${rawBase.replace(/^\/+|\/+$/g, '')}/`;
 
 export default defineConfig({
